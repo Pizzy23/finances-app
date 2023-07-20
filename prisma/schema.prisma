@@ -9,20 +9,21 @@ datasource db {
 
 model Register {
   id       Int    @id @default(autoincrement())
-  name     String
-  email    String @unique
-  password String
+  name     String @default("")
+  email    String @unique @default("")
+  password String @default("")
+  balance  String @default("")
 }
 
 model Auth {
   id    Int    @id @default(autoincrement())
-  email String @unique
-  token String
+  email String @unique @default("")
+  token String @default("")
 }
 
 model Login {
   id             Int     @id @default(autoincrement())
   email          String  @unique
-  isLogged       Boolean
-  isValidAccount Boolean
+  isLogged       Boolean @default(false)
+  isValidAccount Boolean @default(false)
 }

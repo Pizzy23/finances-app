@@ -2,6 +2,7 @@ import { BaseService } from '../base/baseService';
 import { AuthEntity } from '../../entity';
 import { NewUser } from '../../interface';
 import { Injectable } from '@nestjs/common';
+import { EmailInput, TokenInput } from 'src/dto/register/register-dto';
 
 @Injectable()
 export class AuthService extends BaseService {
@@ -28,11 +29,11 @@ export class AuthService extends BaseService {
     }
   }
 
-  async getUserAuth(token: string): Promise<Object | null> {
+  async getUserAuth(input: TokenInput): Promise<Object | null> {
     try {
-      const user = await this.repository.searchByToken(token);
-      if (user?.token == token) {
-        await this.repository.putUserInDB(user.email, token);
+      const user = await this.repository.searchByToken(input.token);
+      if (user?.token == input.token) {
+        await this.repository.putUserInDB(user.email, input.token);
         return { res: 'Token Valido', status: 200 };
       }
       throw new Error('Token not Valid');
@@ -40,7 +41,7 @@ export class AuthService extends BaseService {
       throw new Error(e);
     }
   }
-  async changePassword(user: NewUser): Promise<Object> {
+  async changePassword(user: TokenInput): Promise<Object> {
     try {
       const userInDb = await this.repository.searchUser(user.email);
       if (userInDb == null) {

@@ -1,7 +1,13 @@
-import { Controller, Post, Put, Delete } from '@nestjs/common';
+import { Controller, Post, Put, Delete, Body, Headers } from '@nestjs/common';
 import { RegisterService } from '../../services/register/registerService';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { StringResDTO } from 'src/dto/response/response-dto';
+import {
+  ChangeEmail,
+  ChangePassInput,
+  CreateUser,
+  EmailInput,
+} from 'src/dto/register/register-dto';
 
 @ApiTags('Register')
 @Controller('/register')
@@ -12,7 +18,7 @@ export class RegisterController {
     summary: 'Register New User',
   })
   @Post('')
-  async postRegister(input: any) {
+  async postRegister(@Body() input: CreateUser) {
     return await this.service.postService(input);
   }
   @ApiOkResponse({ type: [StringResDTO] })
@@ -20,7 +26,7 @@ export class RegisterController {
     summary: 'Change Password',
   })
   @Put('/password')
-  async putPassword(input: any) {
+  async putPassword(@Headers() input: ChangePassInput) {
     return await this.service.changePassword(input);
   }
   @ApiOkResponse({ type: [StringResDTO] })
@@ -28,7 +34,7 @@ export class RegisterController {
     summary: 'Change E-mail',
   })
   @Put('/email')
-  async putEmail(input: any) {
+  async putEmail(@Headers() input: ChangeEmail) {
     return this.service.changeEmail(input);
   }
   @ApiOkResponse({ type: [StringResDTO] })
@@ -36,7 +42,7 @@ export class RegisterController {
     summary: 'Delete Account',
   })
   @Delete('')
-  async deleteAccount(input: any) {
+  async deleteAccount(@Headers() input: EmailInput) {
     return await this.service.deleteAccount(input);
   }
 }

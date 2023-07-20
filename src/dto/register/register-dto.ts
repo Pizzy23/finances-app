@@ -3,51 +3,68 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 @Injectable()
-export class LoanInputDto {
+export class CreateUser {
   @ApiProperty()
   @IsString()
   name: string;
 
   @ApiProperty()
   @IsString()
-  adress: string;
-
-  @ApiProperty()
-  @IsString()
-  phone: string;
-
-  @ApiProperty()
-  @IsString()
-  current: string;
+  balance: string;
 
   @ApiProperty()
   @IsString()
   email: string;
-
-  @ApiProperty()
-  @IsString()
-  userId: string;
 
   @ApiProperty()
   @IsString()
   password: string;
+
+  @ApiProperty()
+  @IsString()
+  confirmPassword: string;
 }
+
 @Injectable()
-export class GetLoanInputDto {
+export class EmailInput {
   @ApiProperty()
   @IsString()
   email: string;
 }
-@Injectable()
-export class PostMakeLoanDto {
+
+export class ChangePassInput {
   @ApiProperty()
   @IsString()
   email: string;
+
   @ApiProperty()
-  @IsNumber()
-  loan: number;
-  @ApiProperty()
+  @IsString()
   @IsOptional()
+  password: string;
+
+  @ApiProperty()
   @IsString()
-  emailRelative: string;
+  @IsOptional()
+  newPassword: string;
+}
+
+export class ChangeEmail {
+  @ApiProperty()
+  @IsString()
+  email: string;
+
+  @ApiProperty()
+  @IsString()
+  @IsOptional()
+  newEmail: string;
+}
+
+export class TokenInput {
+  @ApiProperty()
+  @IsString()
+  email: string;
+
+  @ApiProperty()
+  @IsString()
+  token: string;
 }
