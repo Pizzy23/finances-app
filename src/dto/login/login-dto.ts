@@ -11,10 +11,6 @@ export class PutLogin {
   @ApiProperty()
   @IsString()
   password: string;
-
-  @ApiProperty()
-  @IsString()
-  confirmPassword: string;
 }
 
 @Injectable()

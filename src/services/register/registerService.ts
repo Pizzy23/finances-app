@@ -4,6 +4,7 @@ import { RegisterEntity } from 'src/entity';
 import { User, UserCorrect } from 'src/interface';
 import { LoginService } from '../login/loginService';
 import { Injectable } from '@nestjs/common';
+import { CreateUser } from 'src/dto/register/register-dto';
 
 @Injectable()
 export class RegisterService extends BaseService {
@@ -21,11 +22,11 @@ export class RegisterService extends BaseService {
   private getEmailValidate(email: string) {
     return super.emailValidate(email);
   }
-  async postService(user: User) {
+  async postService(user: CreateUser) {
     try {
       const passwordMatch = this.getCheckPassword(
         user.password,
-        user.confirmpassword,
+        user.confirmPassword,
       );
       const emailValidade = this.getEmailValidate(user.email);
 

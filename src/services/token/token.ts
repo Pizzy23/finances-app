@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { BaseService } from '../base/baseService';
 import { AuthEntity } from 'src/entity';
+import { EmailInput } from 'src/dto/register/register-dto';
 
 @Injectable()
 export class TokenService extends BaseService {
@@ -17,15 +18,15 @@ export class TokenService extends BaseService {
       await this.newCreateToken(email);
     return token;
   }
-  async newSendToken(email: string) {
-    const token = await this.newCreateToken(email);
+  async newSendToken(input: EmailInput) {
+    const token = await this.newCreateToken(input.email);
     const txt = `Prezado(a) usuário(a),
 
     Esperamos que esta mensagem encontre você cheio de motivação e determinação para alcançar suas metas financeiras! Temos o prazer de informar que geramos um novo token exclusivo para você. Anote-o em um local seguro:
     
     Novo Token:${token}`;
     const subject = 'Novo Token de Acesso';
-    super.sendMail(email, txt, subject);
+    super.sendMail(input.email, txt, subject);
     return { res: 'Novo Token enviado', status: 200 };
   }
 }

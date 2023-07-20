@@ -12,12 +12,13 @@ export interface UserLogged {
   isValidAccount: boolean;
 }
 export interface UserCorrect {
-  id: number;
-  name: string;
-  email: string;
-  password: string;
+  id?: number;
+  name?: string;
+  email?: string;
+  password?: string;
   isLogged?: boolean;
-  newEmail: string;
+  newEmail?: string;
+  newPassword?: string;
 }
 export interface UserBaseLogin {
   id: number;
