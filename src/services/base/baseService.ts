@@ -1,20 +1,20 @@
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 const saltRounds = 10;
-import validator from 'email-validator';
+import * as EmailValidator from 'email-validator';
 import {
   CheckPassword,
   Compare,
   Encrypt,
   TokenGenerator,
 } from '../../interface';
-import nodemailer from 'nodemailer';
+import * as nodemailer from 'nodemailer';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class BaseService {
   constructor() {}
-  encrypt(password: string): Encrypt {
-    const encry = bcrypt.hashSync(password, saltRounds);
+  async encrypt(password: string): Promise<string> {
+    const encry = await bcrypt.hash(password, saltRounds);
     return encry;
   }
 
@@ -39,7 +39,7 @@ export class BaseService {
   }
 
   emailValidate(email: string): boolean {
-    const valide = validator.validate(email);
+    const valide = EmailValidator.validate(email);
     if (valide) return true;
     if (!valide) return false;
     return false;
