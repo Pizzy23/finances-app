@@ -3,7 +3,11 @@ import { AuthService } from '../auth/authService';
 import { RegisterEntity } from 'src/entity';
 import { User, UserCorrect } from 'src/interface';
 import { LoginService } from '../login/loginService';
-import { Injectable } from '@nestjs/common';
+import {
+  Injectable,
+  NotAcceptableException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { CreateUser } from 'src/dto/register/register-dto';
 
 @Injectable()
@@ -37,7 +41,7 @@ export class RegisterService extends BaseService {
         throw new Error('e-mail not valid');
       }
 
-      const passwordEncrypted = super.encrypt(user.password);
+      const passwordEncrypted = await super.encrypt(user.password);
 
       const newUser = {
         name: user.name,
@@ -48,7 +52,15 @@ export class RegisterService extends BaseService {
       await this.repository.registerUser(newUser);
       return await this.auth.postToken(newUser);
     } catch (e: any) {
-      throw new Error(e);
+      if (e.message == 'user Exist')
+        throw new NotAcceptableException('User already exists');
+      if (
+        e.message == 'e-mail not valid' ||
+        e.message == 'password not is valid'
+      )
+        throw new UnauthorizedException(e.message);
+
+      throw new Error(e.message);
     }
   }
   async changePassword(user: UserCorrect) {
@@ -56,7 +68,7 @@ export class RegisterService extends BaseService {
     const newUser = {
       name: userDB.name,
       email: user.email,
-      password: super.encrypt(user.password),
+      password: await super.encrypt(user.password),
     };
     await this.repository.changePassword(userDB, newUser);
     return { res: 'Senha trocado com sucesso', status: 200 };
