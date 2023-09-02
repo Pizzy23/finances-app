@@ -32,6 +32,9 @@ import { ConfigModule } from './config';
     TokenService,
     BaseService,
     PrismaService,
+    LoginEntity,
+    RegisterEntity,
+    AuthEntity,
   ],
 })
 export class AppModule {}
