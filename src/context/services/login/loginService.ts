@@ -1,18 +1,12 @@
 import { BaseService } from '../base/baseService';
 import { LoginEntity } from '../../entity';
 
-import {
-  UserCorrect,
-  UserSearchInRegister,
-} from '../../interface/user/userInterface';
-import { PutLogout } from 'src/dto/login/login-dto';
+import { UserCorrect, UserSearchInRegister, PutLogout } from 'src/view';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class LoginService extends BaseService {
-  constructor(
-    private readonly repository: LoginEntity,
-  ) {
+  constructor(private readonly repository: LoginEntity) {
     super();
   }
   async putLogin(request: UserSearchInRegister) {

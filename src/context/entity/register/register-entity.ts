@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/config/prisma.service';
-import { NewUser, UserRegister, UserCorrect } from 'src/interface';
+import { PrismaService } from '../../../config/prisma/prisma.service';
+import { NewUser, UserRegister, UserCorrect } from 'src/view';
 
 @Injectable()
 export class RegisterEntity {

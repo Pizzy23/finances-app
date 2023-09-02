@@ -1,6 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/config/prisma.service';
-import { NewUser, UserRegister, UserCorrect, SearchByEmail, SearchByToken } from 'src/interface';
+import { PrismaService } from '../../../config/prisma/prisma.service';
+import {
+  NewUser,
+  UserRegister,
+  UserCorrect,
+  SearchByEmail,
+  SearchByToken,
+} from 'src/view';
 
 @Injectable()
 export class AuthEntity {
@@ -14,7 +20,7 @@ export class AuthEntity {
       });
       return authUser;
     } catch (err: any) {
-      throw new Error("db not found");
+      throw new Error('db not found');
     }
   }
   async putUserInDB(email: string, token: string): Promise<void> {
@@ -27,7 +33,7 @@ export class AuthEntity {
         },
       });
     } catch (e: any) {
-      throw new Error("db not found");
+      throw new Error('db not found');
     }
   }
   async searchByEmail(email: string): Promise<SearchByEmail | null> {
@@ -46,7 +52,7 @@ export class AuthEntity {
         },
       });
     } catch (err: any) {
-      throw new Error("db not found");
+      throw new Error('db not found');
     }
   }
   async searchByEmailForToken(email: string): Promise<SearchByToken | null> {
@@ -58,7 +64,7 @@ export class AuthEntity {
       });
       return authUser;
     } catch (err: any) {
-      throw new Error("db not found");
+      throw new Error('db not found');
     }
   }
   async searchUser(email: string): Promise<any | null> {
@@ -87,9 +93,9 @@ export class AuthEntity {
         });
         return;
       }
-      throw new Error("user not exist");
+      throw new Error('user not exist');
     } catch (e: any) {
-      throw new Error("db not found");
+      throw new Error('db not found');
     }
   }
 }

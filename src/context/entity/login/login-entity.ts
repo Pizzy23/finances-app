@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/config/prisma.service';
-import { UserSearchInRegister, UserLogged, UserBaseLogin } from 'src/interface';
+import { PrismaService } from '../../../config/prisma/prisma.service';
+import { UserSearchInRegister, UserLogged, UserBaseLogin } from 'src/view';
 
 @Injectable()
 export class LoginEntity {

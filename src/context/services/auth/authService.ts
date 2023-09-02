@@ -1,8 +1,8 @@
 import { BaseService } from '../base/baseService';
 import { AuthEntity } from '../../entity';
-import { NewUser } from '../../interface';
+import { NewUser } from 'src/view';
 import { Injectable } from '@nestjs/common';
-import { EmailInput, TokenInput } from 'src/dto/register/register-dto';
+import { EmailInput, TokenInput } from 'src/view';
 
 @Injectable()
 export class AuthService extends BaseService {

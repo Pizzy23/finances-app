@@ -6,7 +6,7 @@ import {
   Compare,
   Encrypt,
   TokenGenerator,
-} from '../../interface';
+} from 'src/view';
 import * as nodemailer from 'nodemailer';
 import { Injectable } from '@nestjs/common';
 

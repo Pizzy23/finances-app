@@ -1,8 +1,8 @@
 import { Controller, Get, Put, Headers } from '@nestjs/common';
 import { AuthService } from '../../services/auth/authService';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { StringResDTO } from 'src/dto/response/response-dto';
-import { EmailInput, TokenInput } from 'src/dto/register/register-dto';
+import { StringResDTO } from 'src/view/dto/response/response-dto';
+import { EmailInput, TokenInput } from 'src/view/dto/register/register-dto';
 
 @ApiTags('Authentication')
 @Controller('/auth')

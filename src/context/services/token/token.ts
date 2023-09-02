@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { BaseService } from '../base/baseService';
-import { AuthEntity } from 'src/entity';
-import { EmailInput } from 'src/dto/register/register-dto';
+import { AuthEntity } from 'src/context/entity';
+import { EmailInput } from 'src/view';
 
 @Injectable()
 export class TokenService extends BaseService {

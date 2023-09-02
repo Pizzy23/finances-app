@@ -1,9 +1,9 @@
 import { Headers, Controller, Get, Post, Put, Body } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { PutLogin, PutLogout } from 'src/dto/login/login-dto';
-import { StringResDTO } from 'src/dto/response/response-dto';
-import { StringRes } from 'src/interface/response/response-interface';
-import { LoginService } from 'src/services/index';
+import { PutLogin, PutLogout } from 'src/view';
+import { StringResDTO } from 'src/view';
+import { StringRes } from 'src/view';
+import { LoginService } from '../../services';
 
 @ApiTags('Login')
 @Controller('/')

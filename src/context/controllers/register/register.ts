@@ -1,13 +1,13 @@
 import { Controller, Post, Put, Delete, Body, Headers } from '@nestjs/common';
 import { RegisterService } from '../../services/register/registerService';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
-import { StringResDTO } from 'src/dto/response/response-dto';
+import { StringResDTO } from 'src/view';
 import {
   ChangeEmail,
   ChangePassInput,
   CreateUser,
   EmailInput,
-} from 'src/dto/register/register-dto';
+} from 'src/view';
 
 @ApiTags('Register')
 @Controller('/register')

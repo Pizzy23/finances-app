@@ -1,14 +1,13 @@
 import { BaseService } from '../base/baseService';
 import { AuthService } from '../auth/authService';
-import { RegisterEntity } from 'src/entity';
-import { User, UserCorrect } from 'src/interface';
+import { RegisterEntity } from 'src/context/entity';
+import { User, UserCorrect, CreateUser } from 'src/view';
 import { LoginService } from '../login/loginService';
 import {
   Injectable,
   NotAcceptableException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { CreateUser } from 'src/dto/register/register-dto';
 
 @Injectable()
 export class RegisterService extends BaseService {
