@@ -4,7 +4,7 @@ import {
   LoginController,
   RegisterController,
   TokenController,
-} from './controllers/';
+} from './context/controllers/';
 
 import {
   AuthService,
@@ -12,12 +12,13 @@ import {
   LoginService,
   RegisterService,
   TokenService,
-} from './services';
-import { LoginEntity, RegisterEntity, AuthEntity } from './entity';
-import { PrismaService } from './config/prisma.service';
+} from './context/services';
+import { LoginEntity, RegisterEntity, AuthEntity } from './context/entity';
+import { PrismaService } from './config/prisma/prisma.service';
+import { ConfigModule } from './config';
 
 @Module({
-  imports: [],
+  imports: [ConfigModule],
   controllers: [
     RegisterController,
     LoginController,
